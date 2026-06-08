@@ -41,9 +41,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eternities-ai/design-systems"
+    "url": "https://github.com/xnuonux/design-systems"
   },
-  "homepage": "https://github.com/eternities-ai/design-systems#readme",
+  "homepage": "https://github.com/xnuonux/design-systems#readme",
   "engines": {
     "node": ">=18"
   }
