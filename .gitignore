@@ -3,4 +3,5 @@ dist/
 *.tsbuildinfo
 test-smoke.mjs
 test-output/
+.npmrc
 .DS_Store
