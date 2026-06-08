@@ -1,0 +1,35 @@
+---
+name: {{projectName}}-design
+description: Use this skill to generate well-branded interfaces and assets for {{projectName}}{{#pitch}} — {{pitch}}{{/pitch}}, either for production or throwaway prototypes. {{ground.name}} ground, {{accent.name}} accent, {{displayFont}} display, {{monoFont}} mono.
+user-invocable: true
+---
+
+# {{projectName}} — Design Skill
+
+{{pitch}}
+
+Read **`README.md`** in this skill first — it holds the full visual foundations, voice guide, and file manifest.
+
+## Quick orientation
+- **Feeling:** {{moodDescription}}
+- **Tokens:** Link `styles.css` (it `@import`s everything in `tokens/`). Use semantic aliases: `var(--accent)`, `var(--surface-1)`, `var(--text-body)`, `var(--font-display)`.
+- **Type:** {{displayFont}} for {{#if hasSeparateBody}}display/headings{{else}}titles{{/if}}. {{#if hasSeparateBody}}{{bodyFont}} for body/UI. {{/if}}{{monoFont}} for {{#if hasSeparateBody}}code/params/data{{else}}the entire interface{{/if}}.
+- **Surfaces:** `ds-glass` for floating panels. `ds-atmosphere` for full-bleed backgrounds. `ds-card` for content cards.
+- **Voice:** {{voiceRules.[0]}}
+
+## Design rules
+1. {{#hasAccent}}**One accent moment per screen.** {{accent.name}} is the single light source. Never two competing.{{/hasAccent}}{{^hasAccent}}**No accent color.** The canvas provides the color. UI stays monochromatic.{{/hasAccent}}
+2. **{{ground.name}} is the ground.** Always use `ds-atmosphere` or the ground tokens — never flat white or system gray.
+3. {{#if hasDisplayFont}}**{{displayFont}} is the {{#if hasSeparateBody}}display voice{{else}}title voice{{/if}}.** Use it for {{#if hasSeparateBody}}headings and brand moments{{else}}titles only — mono carries everything else{{/if}}.{{/if}}
+4. {{#if hasSeparateBody}}**{{monoFont}} for data.** Timestamps, params, metadata — always mono, always muted.{{/if}}
+5. **No emoji. No exclamation marks.** ^ voiceRules includes "no emoji" — respect it.
+6. **Respect reduced motion.** `prefers-reduced-motion` stops all animations.
+
+## Building {{projectName}} surfaces
+- Start every HTML file with `<link rel="stylesheet" href="design-system/styles.css">`.
+- **Hero section:** `ds-atmosphere` + `ds-display` heading{{#hasAccent}} + accent glow on the key element{{/hasAccent}}.
+- **Content cards:** `ds-card` + `ds-h3` title + `ds-body` copy.
+- **Data/params:** `ds-mono` for values + `ds-label` for labels.
+- {{#specialEffects}}{{#hasOrnament}}**Section dividers:** `ds-ornament` for transitions between major sections.{{/hasOrnament}}{{#hasBlurRise}}**Text reveals:** `ds-rise` for animated text entrance (respects reduced-motion).{{/hasBlurRise}}{{/specialEffects}}
+
+If invoked without guidance, ask what {{projectName}} surface they want to build, then act as an expert designer who outputs HTML artifacts or production code.

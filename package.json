@@ -1,0 +1,50 @@
+{
+  "name": "@eternities/design-systems",
+  "version": "0.1.0",
+  "description": "Scaffold a complete, tokenized, AI-codeable design system from 5 questions. Void + gold, Cinzel display, glass surfaces — the Eternities family.",
+  "type": "module",
+  "bin": {
+    "design-systems": "./bin/design-systems.js"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "src/templates/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node bin/design-systems.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.1",
+    "chroma-js": "^3.1.2",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/chroma-js": "^3.1.2",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "keywords": [
+    "design-system",
+    "cli",
+    "scaffold",
+    "tokens",
+    "css",
+    "eternities",
+    "create-design-system",
+    "css-variables",
+    "design-tokens"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eternities-ai/design-systems"
+  },
+  "homepage": "https://github.com/eternities-ai/design-systems#readme",
+  "engines": {
+    "node": ">=18"
+  }
+}

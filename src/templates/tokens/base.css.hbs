@@ -1,0 +1,58 @@
+/* ============================================================
+   {{projectName}} — Base reset
+   {{ground.name}} ground, {{text.name}} text, {{#if hasSeparateBody}}{{bodyFont}}{{else}}{{monoFont}}{{/if}} body.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+
+{{#hasAccent}}
+a { color: var(--accent-primary); text-decoration: none; }
+a:hover { color: var(--accent-hover-state); }
+{{/hasAccent}}
+{{^hasAccent}}
+a { color: var(--text-body); text-decoration: underline; }
+{{/hasAccent}}
+
+::selection {
+  {{#hasAccent}}background: var(--accent-soft);{{/hasAccent}}
+  {{^hasAccent}}background: rgba(235, 230, 220, 0.18);{{/hasAccent}}
+  color: var(--text-strong);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--glow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* Custom scrollbar */
+* { scrollbar-width: thin; scrollbar-color: var(--divider) transparent; }
+*::-webkit-scrollbar { width: 5px; height: 5px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--divider);
+  border-radius: var(--radius-full);
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

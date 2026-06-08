@@ -1,0 +1,165 @@
+/* ============================================================
+   {{projectName}} — Effects: glow, depth, motion
+   ------------------------------------------------------------
+   {{#surfaceModel}}Surface model: {{surfaceModel}}. {{/surfaceModel}}
+   {{#motion}}Motion: {{motion}}. {{/motion}}
+   {{#radiusStyle}}Radii: {{radiusStyle}}. {{/radiusStyle}}
+   ============================================================ */
+
+:root {
+  /* ── Radii ── */
+  {{#isSharp}}
+  --radius-xs:   1px;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-xl:   12px;
+  {{/isSharp}}
+  {{#isNearSharp}}
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   16px;
+  {{/isNearSharp}}
+  {{#isSoft}}
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   26px;
+  {{/isSoft}}
+  --radius-full: 999px;
+
+  /* ── Elevation ── */
+  --shadow-sm:   0 1px 4px rgba(0, 0, 0, 0.35);
+  --shadow-md:   0 4px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg:   0 12px 48px rgba(0, 0, 0, 0.55);
+
+  {{#hasAccent}}
+  /* ── Accent glow ── */
+  --glow-accent:        0 0 16px var(--accent-glow);
+  --glow-accent-strong: 0 0 32px rgba({{accent.rgb}}, 0.42);
+  --glow-focus:         0 0 0 3px var(--focus-ring);
+  {{/hasAccent}}
+  {{^hasAccent}}
+  --glow-focus:         0 0 0 2px var(--focus-ring);
+  {{/hasAccent}}
+
+  /* ── Glass ── */
+  {{#isGlass}}
+  --blur-glass: blur(16px) saturate(1.10);
+  {{/isGlass}}
+  {{#isSolid}}
+  --blur-glass: blur(12px) saturate(1.05);
+  {{/isSolid}}
+  {{#isEmitted}}
+  --blur-glass: blur(14px) saturate(0.92);
+  {{/isEmitted}}
+
+  /* ── Motion ── */
+  {{#isCalmSettle}}
+  --ease-soft:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:   160ms;
+  --dur-base:   240ms;
+  --dur-slow:   500ms;
+  {{/isCalmSettle}}
+  {{#isBlurRise}}
+  --ease-veil:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-quick:  180ms;
+  --dur-base:   420ms;
+  --dur-slow:   1200ms;
+  --dur-rise:   2400ms;
+  {{/isBlurRise}}
+  {{#isQuickTechnical}}
+  --ease-panel: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-quick:  160ms;
+  --dur-panel:  320ms;
+  {{/isQuickTechnical}}
+}
+
+/* ── Atmosphere (full-bleed background) ── */
+.ds-atmosphere {
+  position: relative;
+  {{#hasAccent}}
+  background:
+    radial-gradient(ellipse 900px 600px at 50% 30%, rgba({{accent.rgb}}, 0.05), transparent 55%),
+    var(--bg-page);
+  {{/hasAccent}}
+  {{^hasAccent}}
+  background: var(--bg-page);
+  {{/hasAccent}}
+  isolation: isolate;
+}
+
+/* ── Glass surface ── */
+.ds-glass {
+  background: var(--surface-1);
+  border: 1px solid var(--border-faint);
+  -webkit-backdrop-filter: var(--blur-glass);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Card ── */
+.ds-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+{{#hasOrnament}}
+/* ── Ornament divider ── */
+.ds-ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+}
+.ds-ornament::before,
+.ds-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-accent), transparent);
+}
+{{/hasOrnament}}
+
+{{#hasBlurRise}}
+/* ── Blur-rise animation ── */
+@keyframes ds-blur-rise {
+  0%   { opacity: 0; filter: blur(14px) brightness(0.55); transform: translateY(11px); }
+  100% { opacity: 1; filter: blur(0) brightness(1); transform: translateY(0); }
+}
+.ds-rise { animation: ds-blur-rise 2.2s var(--ease-veil) both; }
+{{/hasBlurRise}}
+
+{{#hasAperture}}
+/* ── Aperture ring ── */
+.ds-aperture {
+  position: relative;
+}
+.ds-aperture::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  opacity: 0.4;
+  pointer-events: none;
+}
+{{/hasAperture}}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

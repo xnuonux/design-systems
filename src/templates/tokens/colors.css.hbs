@@ -1,0 +1,68 @@
+/* ============================================================
+   {{projectName}} — Color Tokens
+   ------------------------------------------------------------
+   {{moodDescription}}
+   Ground: {{ground.name}} ({{ground.hex}}).
+   Light: {{accent.name}}{{^hasAccent}} (none — canvas is the color){{/hasAccent}}{{#hasAccent}} ({{accent.hex}}){{/hasAccent}}.
+   Text: {{text.name}}.
+   ============================================================ */
+
+:root {
+  /* ── {{ground.name}} depth ── */
+  --void:          {{ground.void}};
+  --void-deep:     {{ground.voidDeep}};
+  --void-raised:   {{ground.voidRaised}};
+  --surface:       {{ground.surface}};
+  --surface-hover: {{ground.voidRaised}};
+  --divider:       rgba({{text.hexRgb}}, 0.08);
+
+  {{#hasAccent}}
+  /* ── {{accent.name}} (the single light source) ── */
+  --accent-bright: {{accent.bright}};
+  --accent-hover:  {{accent.hover}};
+  --accent:        {{accent.base}};
+  --accent-press:  {{accent.press}};
+  --accent-deep:   {{accent.deep}};
+  --accent-glow:   rgba({{accent.rgb}}, 0.28);
+  --accent-soft:   rgba({{accent.rgb}}, 0.12);
+  {{/hasAccent}}
+
+  /* ── {{text.name}} (text) ── */
+  --text-strong:    {{text.strong}};
+  --text-body:      {{text.body}};
+  --text-muted:     {{text.muted}};
+  --text-disabled:  {{text.disabled}};
+
+  /* ── Status ── */
+  --status-ok:      #7ab88a;
+  --status-warn:    #d4b060;
+  --status-err:     #c47060;
+
+  /* ════════ Semantic aliases ════════ */
+
+  --bg-void:       var(--void);
+  --bg-page:       var(--void-deep);
+  --bg-sunk:       var(--void);
+  --surface-1:     var(--surface);
+  --surface-2:     var(--void-raised);
+  --surface-overlay: rgba(0, 0, 0, 0.78);
+
+  --text-primary:  var(--text-strong);
+  --text-secondary:var(--text-muted);
+
+  {{#hasAccent}}
+  --accent-primary: var(--accent);
+  --accent-hover-state: var(--accent-hover);
+  {{/hasAccent}}
+
+  --border-hairline: rgba({{text.hexRgb}}, 0.07);
+  --border-faint:    rgba({{text.hexRgb}}, 0.13);
+  --border-strong:   rgba({{text.hexRgb}}, 0.22);
+  {{#hasAccent}}
+  --border-accent:   rgba({{accent.rgb}}, 0.38);
+  --focus-ring:      rgba({{accent.rgb}}, 0.50);
+  {{/hasAccent}}
+  {{^hasAccent}}
+  --focus-ring:      rgba({{text.hexRgb}}, 0.30);
+  {{/hasAccent}}
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.tsbuildinfo
+test-smoke.mjs
+test-output/
+.DS_Store
