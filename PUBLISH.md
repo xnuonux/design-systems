@@ -48,14 +48,14 @@ What happens:
 1. `prepublishOnly` runs → `tsc` builds `dist/` from `src/`
 2. `files` in package.json selects: `bin/`, `dist/`, `src/templates/` (+ package.json, README)
 3. 30 files are packed into a tarball (18.7 kB)
-4. Uploaded to npm under `@eternities/design-systems`
+4. Uploaded to npm under `create-design-system`
 
 ---
 
 ## Step 4: Verify
 
 ```bash
-npx @eternities/design-systems init
+npx create-design-system init
 ```
 
 First run downloads the package. Subsequent runs use the cached version.
@@ -67,7 +67,7 @@ First run downloads the package. Subsequent runs use the cached version.
 Anyone can scaffold a design system in seconds:
 
 ```bash
-npx @eternities/design-systems init
+npx create-design-system init
 ```
 
 No install. No config. Five questions → seven files.

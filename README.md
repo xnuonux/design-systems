@@ -3,7 +3,7 @@
 > Five questions. One command. Your complete, tokenized, AI-codeable design system.
 
 ```
-npx @eternities/design-systems init
+npx create-design-system init
 ```
 
 ---
@@ -31,7 +31,7 @@ Every system is tokenized, documented, and AI-codeable. Every token is a CSS var
 ## Install
 
 ```bash
-npx @eternities/design-systems init
+npx create-design-system init
 ```
 
 No global install needed. No dependencies outside the command.
@@ -54,13 +54,13 @@ No global install needed. No dependencies outside the command.
 
 ```bash
 # Interactive — answers 5 questions
-npx @eternities/design-systems init
+npx create-design-system init
 
 # Help
-npx @eternities/design-systems --help
+npx create-design-system --help
 
 # Version
-npx @eternities/design-systems --version
+npx create-design-system --version
 ```
 
 ### Example session

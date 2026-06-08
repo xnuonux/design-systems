@@ -1,5 +1,5 @@
 {
-  "name": "@eternities/design-systems",
+  "name": "create-design-system",
   "version": "0.1.0",
   "description": "Scaffold a complete, tokenized, AI-codeable design system from 5 questions. Void + gold, Cinzel display, glass surfaces — the Eternities family.",
   "type": "module",
